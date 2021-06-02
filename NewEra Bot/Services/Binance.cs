@@ -16,6 +16,10 @@ namespace NewEra_Bot.Models
 
         public static User user;
 
+        public static decimal StartUSDT;
+
+        public static decimal StartBNB;
+
         // Проверка, есть ли уже заранее созданные настройки, если да, то чтение их из файла
         public static bool IsAlreadyConnection()
         {
@@ -28,36 +32,31 @@ namespace NewEra_Bot.Models
             }
         }
 
-        public static decimal GetBalanceUSDT()
+        public static void GetBalances()
         {
             var client = new BinanceClient(new BinanceClientOptions
             {
                 ApiCredentials = new ApiCredentials(user.GetAPIKey(), user.GetSecretKey())
             });
-            var startResult = client.Spot.UserStream.StartUserStream();
-
-            Balances = new Dictionary<string, decimal>();
-
             var balance = client.General.GetAccountInfo();
             BinanceAccountInfo b = new BinanceAccountInfo();
             if (balance.Success)
             {
                 // Заполним словарь
                 b = balance.Data;
-                foreach(var item in b.Balances)
-                    Balances.Add(item.Asset, item.Total);
 
                 foreach (var zh in b.Balances)
                 {
                     if (zh.Asset == "USDT")
                     {
-                        return zh.Free;
+                        StartUSDT = zh.Free;
+                    }
+                    if(zh.Asset =="BNB")
+                    {
+                        StartBNB = zh.Free;
                     }
                 }
             }
-
-
-            return 0;
         }
 
         public static void ConnectionToBinance(User user)

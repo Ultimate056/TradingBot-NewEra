@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 
 namespace NewEra_Bot.Models
@@ -14,9 +16,15 @@ namespace NewEra_Bot.Models
         private readonly string API_Key;
 
         private readonly string Secret_Key;
-
         public decimal Balance { get; set; } = 0;
-        public int CountSuccessOrders { get; set; }
+        public int CountSuccessOrders { get; set; } = 0;
+
+        public decimal CountBNB { get; set; } = 0;
+
+        public ObservableCollection<Order> ListNotCompleted { get; set; } = new ObservableCollection<Order>();
+
+        public ObservableCollection<Order> ListCompleted { get; set; }  = new ObservableCollection<Order>();
+
 
         public User(string name, string ReferalID, long ID_user, string API_Key, string Secret_Key)
         {

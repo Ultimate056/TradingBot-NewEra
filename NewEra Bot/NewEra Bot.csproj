@@ -55,6 +55,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
       <Private>True</Private>
@@ -159,10 +160,10 @@
     <Compile Include="ModalWindow.xaml.cs">
       <DependentUpon>ModalWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\Models\OrderForBot.cs" />
     <Compile Include="MVVM\ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Services\Binance.cs" />
     <Compile Include="MVVM\Models\Ordercs.cs" />
-    <Compile Include="MVVM\Models\Strategies.cs" />
     <Compile Include="MVVM\Models\TradingBot.cs" />
     <Compile Include="MVVM\Models\TradingCouple.cs" />
     <Compile Include="MVVM\Models\User.cs" />
